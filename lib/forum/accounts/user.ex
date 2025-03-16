@@ -5,7 +5,7 @@ defmodule Forum.Accounts.User do
   schema "users" do
     field :name, :string
     field :email, :string
-
+    has_many :posts, Forum.Posts.Post # This line is added to associate a user with posts. Note the pluralization of posts.
     timestamps(type: :utc_datetime)
   end
 

@@ -18,12 +18,16 @@ defmodule ForumWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    get "/users", PageController, :users
   end
 
   scope "/api", ForumWeb do
     pipe_through :api
+
+    # After running the mix phx.gen.json command, the corresponding Controller module is created in the lib/forum_web/controllers/controller.ex file.
+    # The code below is to add the generated controller to the router.
+    # Note that the mix.ecto.migrate command is used to run the migration file.
     resources "/posts", PostController, except: [:new, :edit]
+    resources "/users", UserController, except: [:new, :edit]
   end
 
   # Other scopes may use custom stacks.
